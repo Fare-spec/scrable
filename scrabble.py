@@ -1,11 +1,8 @@
 from pathlib import Path
 
-
 TAILLE_PLATEAU = 15
 TAILLE_MARGE = 4
 JOKER = "?"
-# Permet d'aller chercher les fichiers dans ../data/*
-DATA_DIR: Path = Path(__file__).resolve().parents[1] / "data"
 
 
 def symetrise_liste(lst):
@@ -40,11 +37,9 @@ def generer_dictfr(nf="littre.txt"):
     return mots
 
 
-def generer_dico(
-    nf: str = "lettres.txt",
-):  # I allowed myself to add an arg to this function considering the architecture of the project
+def generer_dico():
     jetons = {}
-    with Path(nf).open(encoding="utf_8") as lettres:
+    with Path("lettres.txt").open(encoding="utf_8") as lettres:
         for ligne in lettres:
             l, v, o = ligne.strip().split(";")
             jetons[l] = {"occ": int(o), "val": int(v)}
